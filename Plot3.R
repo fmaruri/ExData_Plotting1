@@ -19,10 +19,13 @@ f$Sub_metering_1 <- as.numeric(as.character(f$Sub_metering_1))
 f$Sub_metering_2 <- as.numeric(as.character(f$Sub_metering_2))
 f$Sub_metering_3 <- as.numeric(as.character(f$Sub_metering_3))
 
-##CREATE PLOT 1
-plot1 <- function() {
-        hist(f$Global_active_power, main = paste("Global Active Power"), col="red", xlab="Global Active Power (kilowatts)")
-        dev.copy(png, file="plot1.png", width=480, height=480)
-        dev.off()
-     }
-plot1()
+##CREATE PLOT 3
+plot3 <- function() {
+        plot(f$timestamp,f$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering")
+        lines(f$timestamp,f$Sub_metering_2,col="red")
+        lines(f$timestamp,f$Sub_metering_3,col="blue")
+        legend("topright", col=c("black","red","blue"), c("Sub_metering_1","Sub_metering_2", "Sub_metering_3"),lty=c(1,1), lwd=c(1,1))
+        dev.copy(png, file="Plot3.png", width=480, height=480)
+        dev.off()}
+
+plot3()
