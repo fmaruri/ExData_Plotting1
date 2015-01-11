@@ -27,7 +27,7 @@ plot4 <- function() {
         plot(f$timestamp,f$Global_active_power, type="l", xlab="", ylab="Global Active Power")
        
 	##PLOT B
-        plot(f$timestamp,f$Voltage, type="l", xlab="datetime", ylab="Voltage")
+        plot(f$timestamp,f$Voltage, type="l", xlab="date/time", ylab="Voltage")
         
         ##PLOT C
         plot(f$timestamp,f$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering")
@@ -36,7 +36,7 @@ plot4 <- function() {
         legend("topright", col=c("black","red","blue"), c("Sub_metering_1","Sub_metering_2", "Sub_metering_3"),lty=c(1,1), bty="n", cex=.5) 
         
         ##PLOT D
-        plot(f$timestamp,f$Global_reactive_power, type="l", xlab="datetime", ylab="Global reactive power")
+        plot(f$timestamp,f$Global_reactive_power, type="l", xlab="date/time", ylab="Global reactive power")
         
         ##OUTPUT
         dev.copy(png, file="plot4.png", width=480, height=480)

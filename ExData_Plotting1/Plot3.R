@@ -7,7 +7,7 @@ if(!file.exists("exdata-data-household_power_consumption.zip")) {
 }
 ##READ DATA
 p <- read.table(file, header=T, sep=";")
-##REFORMAT DATES
+##SUBSET DATA AND REFORMAT DATES
 p$Date <- as.Date(p$Date, format="%d/%m/%Y")
 f <- p[(p$Date=="2007-02-01") | (p$Date=="2007-02-02"),]
 f <- transform(f, timestamp=as.POSIXct(paste(Date, Time)), "%d/%m/%Y %H:%M:%S")
