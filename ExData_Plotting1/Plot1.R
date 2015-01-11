@@ -6,10 +6,10 @@ if(!file.exists("exdata-data-household_power_consumption.zip")) {
         unlink(temp)
 }
 ##READ DATA
-power <- read.table(file, header=T, sep=";")
+p <- read.table(file, header=T, sep=";")
 ##REFORMAT DATES
-power$Date <- as.Date(power$Date, format="%d/%m/%Y")
-f <- power[(power$Date=="2007-02-01") | (power$Date=="2007-02-02"),]
+p$Date <- as.Date(p$Date, format="%d/%m/%Y")
+f <- p[(p$Date=="2007-02-01") | (p$Date=="2007-02-02"),]
 f <- transform(f, timestamp=as.POSIXct(paste(Date, Time)), "%d/%m/%Y %H:%M:%S")
 ##TRANSFORM CHARACTER VALUES TO NUMERIC VALUES
 f$Global_active_power <- as.numeric(as.character(f$Global_active_power))

@@ -6,10 +6,10 @@ if(!file.exists("exdata-data-household_power_consumption.zip")) {
         unlink(temp)
 }
 ##READ DATA
-power <- read.table(file, header=T, sep=";")
-##REFORMAT DATES
-power$Date <- as.Date(power$Date, format="%d/%m/%Y")
-f <- power[(power$Date=="2007-02-01") | (power$Date=="2007-02-02"),]
+p <- read.table(file, header=T, sep=";")
+##SUBSET DATA AND REFORMAT DATES
+p$Date <- as.Date(p$Date, format="%d/%m/%Y")
+f <- p[(p$Date=="2007-02-01") | (p$Date=="2007-02-02"),]
 f <- transform(f, timestamp=as.POSIXct(paste(Date, Time)), "%d/%m/%Y %H:%M:%S")
 ##TRANSFORM CHARACTER VALUES TO NUMERIC VALUES
 f$Global_active_power <- as.numeric(as.character(f$Global_active_power))
@@ -36,7 +36,7 @@ plot4 <- function() {
         legend("topright", col=c("black","red","blue"), c("Sub_metering_1","Sub_metering_2", "Sub_metering_3"),lty=c(1,1), bty="n", cex=.5) 
         
         ##PLOT D
-        plot(f$timestamp,f$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power")
+        plot(f$timestamp,f$Global_reactive_power, type="l", xlab="datetime", ylab="Global reactive power")
         
         ##OUTPUT
         dev.copy(png, file="plot4.png", width=480, height=480)
